@@ -17,7 +17,6 @@ const LangLoader                        = require('./app/assets/js/langloader')
 LangLoader.setupLanguage()
 
 // Setup auto updater.
-
 function initAutoUpdater(event, data) {
 
     if(data){
@@ -131,7 +130,7 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
         width: 520,
         height: 600,
         frame: true,
-        icon: getPlatformIcon('FranceChomage')
+        icon: getPlatformIcon('SealCircle')
     })
 
     msftAuthWindow.on('closed', () => {
@@ -146,13 +145,11 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
 
     msftAuthWindow.webContents.on('did-navigate', (_, uri) => {
         if (uri.startsWith(REDIRECT_URI_PREFIX)) {
-            let queries = uri.substring(REDIRECT_URI_PREFIX.length).split('#', 1).toString().split('&')
             let queryMap = {}
-
-            queries.forEach(query => {
-                const [name, value] = query.split('=')
-                queryMap[name] = decodeURI(value)
-            })
+            
+            new URL(uri).searchParams.forEach((v, k) => {
+                queryMap[k] = v;
+            });
 
             ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.SUCCESS, queryMap, msftAuthViewSuccess)
 
@@ -184,7 +181,7 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGOUT, (ipcEvent, uuid, isLastAccount) => {
         width: 520,
         height: 600,
         frame: true,
-        icon: getPlatformIcon('FranceChomage')
+        icon: getPlatformIcon('SealCircle')
     })
 
     msftLogoutWindow.on('closed', () => {
@@ -230,7 +227,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 980,
         height: 552,
-        icon: getPlatformIcon('FranceChomage'),
+        icon: getPlatformIcon('SealCircle'),
         frame: false,
         webPreferences: {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),

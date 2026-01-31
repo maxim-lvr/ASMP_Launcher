@@ -96,7 +96,7 @@ class ProcessBuilder {
         child.stderr.on('data', (data) => {
             data.trim().split('\n').forEach(x => console.log(`\x1b[31m[Minecraft]\x1b[0m ${x}`))
         })
-        child.on('close', (code, signal) => {
+        child.on('close', (code) => {
             logger.info('Exited with code', code)
             fs.remove(tempNativePath, (err) => {
                 if(err){
@@ -234,7 +234,7 @@ class ProcessBuilder {
                     return true
                 }
             }
-        } catch (err) {
+        } catch (_err) {
             // We know old forge versions follow this format.
             // Error must be caused by newer version.
         }
@@ -840,8 +840,7 @@ class ProcessBuilder {
         for(let mdl of mdls){
             const type = mdl.rawModule.type
             if(type === Type.ForgeHosted || type === Type.Fabric || type === Type.Library){
-                if (mdl.rawModule.classpath !== false)
-                    libs[mdl.getVersionlessMavenIdentifier()] = mdl.getPath()
+                libs[mdl.getVersionlessMavenIdentifier()] = mdl.getPath()
                 if(mdl.subModules.length > 0){
                     const res = this._resolveModuleLibraries(mdl)
                     libs = {...libs, ...res}
