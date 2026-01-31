@@ -1,7 +1,13 @@
 {
+<<<<<<< Updated upstream
   "name": "helioslauncher",
   "version": "2.2.1",
   "productName": "Helios Launcher",
+=======
+  "name": "asmplauncher",
+  "version": "2.2.0",
+  "productName": "ASMP Launcher",
+>>>>>>> Stashed changes
   "description": "Modded Minecraft Launcher",
   "author": "Daniel Scalzi (https://github.com/dscalzi/)",
   "license": "UNLICENSED",
