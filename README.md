@@ -126,6 +126,15 @@ Builds for macOS may not work on Windows/Linux and vice-versa.
 
 ---
 
+### Auto Release
+
+to add a new tag and release it with Actions in all 3 versions.
+npm version patch   # 1.0.0 -> 1.0.1
+npm version minor   # 1.0.0 -> 1.1.0
+npm version major   # 1.0.0 -> 2.0.0
+git push --follow-tags
+
+
 ### Visual Studio Code
 
 All development of the launcher should be done using [Visual Studio Code][vscode].
