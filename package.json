@@ -1,6 +1,6 @@
 {
   "name": "asmplauncher",
-  "version": "2.2.9",
+  "version": "2.2.10",
   "productName": "ASMP Launcher",
   "description": "Modded Minecraft Launcher",
   "author": "maximlvr (https://github.com/dscalzi/)",
@@ -13,7 +13,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder build",
+    "dist": "electron-builder --publish onTag",
     "dist:win": "npm run dist -- -w",
     "dist:mac": "npm run dist -- -m",
     "dist:linux": "npm run dist -- -l",
